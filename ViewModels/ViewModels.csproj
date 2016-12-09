@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="FileViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="NotificationListItemViewModel.cs" />
