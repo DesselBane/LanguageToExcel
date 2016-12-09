@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Services\Model.csproj", "{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
