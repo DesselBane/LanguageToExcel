@@ -51,9 +51,9 @@
 
         <!-- Thrid Column -->
         <Label Content="File Path" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-        <Label Name="lbl_firstFilePath" Content="{Binding ElementName=root, Path=firstFile}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_first, Path=IsChecked}"/>
-        <Label Name="lbl_secondFilePath" Content="{Binding ElementName=root, Path=secondFile}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_second, Path=IsChecked}"/>
-        <Label Name="lbl_thirdFilePath" Content="{Binding ElementName=root, Path=thirdFile}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_third, Path=IsChecked}"/>
+        <Label Name="lbl_firstFilePath" Content="{Binding ElementName=root, Path=FirstFile}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_first, Path=IsChecked}"/>
+        <Label Name="lbl_secondFilePath" Content="{Binding ElementName=root, Path=SecondFile}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_second, Path=IsChecked}"/>
+        <Label Name="lbl_thirdFilePath" Content="{Binding ElementName=root, Path=ThirdFile}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsEnabled="{Binding ElementName=chBox_third, Path=IsChecked}"/>
 
 
         <!-- Fourth Column -->
@@ -67,7 +67,7 @@
         <ComboBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" ItemsSource="{Binding Source={StaticResource enumFromData}}" SelectedItem="{Binding ElementName=root, Path=Encoding}" />
         <Label Content="Output File" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Label Content="{Binding ElementName=root, Path=outputFile}" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
+        <Label Content="{Binding ElementName=root, Path=OutputFile}" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
         <Button Name="btn_outputBrowse" Content="Browse" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="80" Click="btn_outputBrowse_Click" />
         <Button Name="btn_openExcel" Content="Open" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Width="80" Click="btn_openExcel_Click" />
         
