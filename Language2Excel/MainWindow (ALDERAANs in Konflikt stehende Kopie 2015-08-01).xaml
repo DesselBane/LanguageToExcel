@@ -1,0 +1,71 @@
+﻿<Window x:Class="Language2Excel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Language2Excel"
+        mc:Ignorable="d"
+        Title="Language to Excel" Height="450" Width="725"
+        ResizeMode="CanMinimize"
+        x:Name="root"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- First Column -->
+        <Label Content="Use" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <CheckBox x:Name="chBox_first" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
+        <CheckBox x:Name="chBox_second" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
+        <CheckBox x:Name="chBox_third" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
+        
+        <!-- Second Column -->
+        <Label Content="Language" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" RenderTransformOrigin="-0.008,0.595"/>
+        <TextBox Name="txt_firstLanguage" Grid.Row="1" Width="80" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=chBox_first, Path=IsChecked}"/>
+        <TextBox Name="txt_secondLanguage" Grid.Row="2" Width="80" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=chBox_second, Path=IsChecked}"/>
+        <TextBox Name="txt_thirdLanguage" Grid.Row="3" Width="80" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="{Binding ElementName=chBox_third, Path=IsChecked}"/>
+
+
+        <!-- Thrid Column -->
+        <Label Content="File Path" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+        <Label Name="lbl_firstFilePath" Content="{Binding ElementName=root, Path=firstFile}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
+        <Label Name="lbl_secondFilePath" Content="{Binding ElementName=root, Path=secondFile}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
+        <Label Name="lbl_thirdFilePath" Content="{Binding ElementName=root, Path=thirdFile}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
+
+
+        <!-- Fourth Column -->
+        <Button Name="btn_firstFileBrowse" Content="Browse" Width="80" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn_firstFileBrowse_Click" IsEnabled="{Binding ElementName=chBox_first, Path=IsChecked}"/>
+        <Button Name="btn_secondFileBrowse" Content="Browse" Width="80" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn_secondFileBrowse_Click" IsEnabled="{Binding ElementName=chBox_second, Path=IsChecked}"/>
+        <Button Name="btn_thirdFileBrowse" Content="Browse" Width="80" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn_thirdFileBrowse_Click" IsEnabled="{Binding ElementName=chBox_third, Path=IsChecked}"/>
+        
+        <Separator HorizontalAlignment="Left" Height="1" Width="725" RenderTransformOrigin="0.5,0.495" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Center"/>
+
+        <!-- Output Row -->
+        <Label Content="Output File" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Label Content="Please select where to save the output." Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" />
+        <Button Name="btn_outputBrowse" Content="Browse" Grid.Row="6" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="80" Click="btn_outputBrowse_Click" />
+        
+        <TextBox Grid.Row="7" Name="txt_output" Grid.Column="0" Grid.ColumnSpan="4" IsReadOnly="True" Focusable="False" Margin="5" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Button Name="btn_go" Content="Parse" Margin="5" Width="80" Click="btn_go_Click" />
+            <Button Name="btn_quit" Content="Quit" Margin="5" Width="80" Click="btn_quit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
