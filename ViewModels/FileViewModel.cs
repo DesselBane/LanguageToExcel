@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Contracts.DomainModels;
 using Contracts.Factories;
+using Contracts.Presentation;
 using ViewModels.Commands;
 
 namespace ViewModels
@@ -13,6 +14,8 @@ namespace ViewModels
         private IPropertiesFile _propertiesFile;
         private RelayCommand _selectFilePath;
         private bool _canInteract;
+        private IFileService _fileService;
+        private RelayCommand _validateCommand;
 
         #endregion
 
@@ -24,6 +27,18 @@ namespace ViewModels
 
         public ICommand SelectFilePath => _selectFilePath ?? (_selectFilePath = new RelayCommand(OnSelectFilePath, CanSelectFilePath));
 
+        public ICommand Validate => _validateCommand ?? (_validateCommand = new RelayCommand(OnValidate, CanValidate));
+
+        public string Language
+        {
+            get { return _propertiesFile.Language; }
+            set
+            {
+                _propertiesFile.Language = value; 
+                FirePropertyChanged();
+            }
+        }
+
         public bool CanInteract
         {
             get { return _canInteract; }
@@ -32,6 +47,7 @@ namespace ViewModels
                 _canInteract = value;
                 FirePropertyChanged();
                 _selectFilePath?.ReevaluatePermissions();
+                _validateCommand?.ReevaluatePermissions();
             }
         }
 
@@ -39,9 +55,10 @@ namespace ViewModels
 
         #region Constructors
 
-        public FileViewModel(IFileFactory fileFactory)
+        public FileViewModel(IFileFactory fileFactory,IFileService fileService)
         {
             _propertiesFile = fileFactory.GetPropertiesFile();
+            _fileService = fileService;
         }
 
         #endregion
@@ -50,12 +67,22 @@ namespace ViewModels
 
         private void OnSelectFilePath()
         {
-            throw new NotImplementedException();
+            _propertiesFile.FilePath = _fileService.OpenFile();
         }
 
         private bool CanSelectFilePath()
         {
             return CanInteract;
+        }
+
+        private void OnValidate()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanValidate()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Command Handler
