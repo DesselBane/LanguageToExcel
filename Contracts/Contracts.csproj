@@ -45,6 +45,8 @@
     <Compile Include="Factories\IFileFactory.cs" />
     <Compile Include="Factories\IViewModelFactory.cs" />
     <Compile Include="IApplicationService.cs" />
+    <Compile Include="Presentation\IFileService.cs" />
+    <Compile Include="Presentation\IFileServiceOptions.cs" />
     <Compile Include="Presentation\IViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IExcelExportService.cs" />
