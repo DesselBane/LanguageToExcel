@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Contracts.Factories;
 using ViewModels.Commands;
 
 namespace ViewModels
@@ -11,13 +12,14 @@ namespace ViewModels
 
         private readonly ObservableCollection<NotificationListItemViewModel> _notificationListItems = new ObservableCollection<NotificationListItemViewModel>();
         private readonly ObservableCollection<FileViewModel> _selectedInputFiles = new ObservableCollection<FileViewModel>();
-        private RelayCommand _startExportCommand;
-        private RelayCommand _closeProgramCommand;
-        private RelayCommand _selectOutputFilePathCommand;
         private RelayCommand _addNewSourceFileCommand;
-        private RelayCommand _removeSourceFileCommand;
-        private RelayCommand _openOutputFileCommand;
+        private RelayCommand _closeProgramCommand;
         private bool _isWorking;
+        private RelayCommand _openOutputFileCommand;
+        private RelayCommand _removeSourceFileCommand;
+        private RelayCommand _selectOutputFilePathCommand;
+        private RelayCommand _startExportCommand;
+        private IViewModelFactory _viewModelFactory;
 
         #endregion
 
@@ -39,7 +41,7 @@ namespace ViewModels
             get { return _isWorking; }
             private set
             {
-                _isWorking = value; 
+                _isWorking = value;
                 FirePropertyChanged();
                 _startExportCommand?.ReevaluatePermissions();
                 _closeProgramCommand?.ReevaluatePermissions();
@@ -47,8 +49,16 @@ namespace ViewModels
                 _addNewSourceFileCommand?.ReevaluatePermissions();
                 _removeSourceFileCommand?.ReevaluatePermissions();
                 _openOutputFileCommand?.ReevaluatePermissions();
-                
             }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public MainViewModel(IViewModelFactory viewModelFactory)
+        {
+            _viewModelFactory = viewModelFactory;
         }
 
         #endregion
@@ -67,10 +77,9 @@ namespace ViewModels
 
         private void OnCloseProgram()
         {
-            
         }
 
-        private bool CanCloseProgram() 
+        private bool CanCloseProgram()
         {
             return true;
         }
@@ -87,8 +96,7 @@ namespace ViewModels
 
         private void OnAddNewSourceFile()
         {
-            var fileViewModel = new FileViewModel();
-            SelectedInputFiles.Add(fileViewModel);
+            SelectedInputFiles.Add(_viewModelFactory.GetViewModel<FileViewModel>());
         }
 
         private bool CanAddNewSourceFile()
