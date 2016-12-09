@@ -5,7 +5,7 @@ using ViewModels.Commands;
 
 namespace ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
         #region Vars
 
@@ -17,6 +17,7 @@ namespace ViewModels
         private RelayCommand _addNewSourceFileCommand;
         private RelayCommand _removeSourceFileCommand;
         private RelayCommand _openOutputFileCommand;
+        private bool _isWorking;
 
         #endregion
 
@@ -32,6 +33,23 @@ namespace ViewModels
         public ICommand AddNewSourceFile => _addNewSourceFileCommand ?? (_addNewSourceFileCommand = new RelayCommand(OnAddNewSourceFile, CanAddNewSourceFile));
         public ICommand RemoveSourceFile => _removeSourceFileCommand ?? (_removeSourceFileCommand = new RelayCommand(OnRemoveSourceFile, CanRemoveSourceFile));
         public ICommand OpenOutputFile => _openOutputFileCommand ?? (_openOutputFileCommand = new RelayCommand(OnOpenOutputFile, CanOpenOutputFile));
+
+        public bool IsWorking
+        {
+            get { return _isWorking; }
+            private set
+            {
+                _isWorking = value; 
+                FirePropertyChanged();
+                _startExportCommand?.ReevaluatePermissions();
+                _closeProgramCommand?.ReevaluatePermissions();
+                _selectOutputFilePathCommand?.ReevaluatePermissions();
+                _addNewSourceFileCommand?.ReevaluatePermissions();
+                _removeSourceFileCommand?.ReevaluatePermissions();
+                _openOutputFileCommand?.ReevaluatePermissions();
+                
+            }
+        }
 
         #endregion
 
@@ -49,12 +67,12 @@ namespace ViewModels
 
         private void OnCloseProgram()
         {
-            throw new NotImplementedException();
+            
         }
 
-        private bool CanCloseProgram()
+        private bool CanCloseProgram() 
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void OnSelectOutputFile()
@@ -69,22 +87,23 @@ namespace ViewModels
 
         private void OnAddNewSourceFile()
         {
-            throw new NotImplementedException();
+            var fileViewModel = new FileViewModel();
+            SelectedInputFiles.Add(fileViewModel);
         }
 
         private bool CanAddNewSourceFile()
         {
-            throw new NotImplementedException();
+            return !IsWorking;
         }
 
-        private void OnRemoveSourceFile()
+        private void OnRemoveSourceFile(object param)
         {
-            throw new NotImplementedException();
+            SelectedInputFiles.Remove((FileViewModel) param);
         }
 
-        private bool CanRemoveSourceFile()
+        private bool CanRemoveSourceFile(object param)
         {
-            throw new NotImplementedException();
+            return param is FileViewModel && !IsWorking;
         }
 
         private void OnOpenOutputFile()
