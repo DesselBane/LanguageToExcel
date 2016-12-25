@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Contracts.Factories;
-using ViewModels.Commands;
+using Prism.Commands;
 
 namespace ViewModels
 {
@@ -12,14 +11,13 @@ namespace ViewModels
 
         private readonly ObservableCollection<NotificationListItemViewModel> _notificationListItems = new ObservableCollection<NotificationListItemViewModel>();
         private readonly ObservableCollection<FileViewModel> _selectedInputFiles = new ObservableCollection<FileViewModel>();
-        private RelayCommand _addNewSourceFileCommand;
-        private RelayCommand _closeProgramCommand;
+        private DelegateCommand _addNewSourceFileCommand;
+        private DelegateCommand _closeProgramCommand;
         private bool _isWorking;
-        private RelayCommand _openOutputFileCommand;
-        private RelayCommand _removeSourceFileCommand;
-        private RelayCommand _selectOutputFilePathCommand;
-        private RelayCommand _startExportCommand;
-        private IViewModelFactory _viewModelFactory;
+        private DelegateCommand _openOutputFileCommand;
+        private DelegateCommand<FileViewModel> _removeSourceFileCommand;
+        private DelegateCommand _selectOutputFilePathCommand;
+        private DelegateCommand _startExportCommand;
 
         #endregion
 
@@ -29,12 +27,12 @@ namespace ViewModels
 
         public ObservableCollection<NotificationListItemViewModel> NotificationListItems => _notificationListItems;
 
-        public ICommand StartExport => _startExportCommand ?? (_startExportCommand = new RelayCommand(OnStartExport, CanStartExport));
-        public ICommand CloseProgram => _closeProgramCommand ?? (_closeProgramCommand = new RelayCommand(OnCloseProgram, CanCloseProgram));
-        public ICommand SelectOutputFilePath => _selectOutputFilePathCommand ?? (_selectOutputFilePathCommand = new RelayCommand(OnSelectOutputFile, CanSelectOutputFile));
-        public ICommand AddNewSourceFile => _addNewSourceFileCommand ?? (_addNewSourceFileCommand = new RelayCommand(OnAddNewSourceFile, CanAddNewSourceFile));
-        public ICommand RemoveSourceFile => _removeSourceFileCommand ?? (_removeSourceFileCommand = new RelayCommand(OnRemoveSourceFile, CanRemoveSourceFile));
-        public ICommand OpenOutputFile => _openOutputFileCommand ?? (_openOutputFileCommand = new RelayCommand(OnOpenOutputFile, CanOpenOutputFile));
+        public ICommand StartExport => _startExportCommand ?? (_startExportCommand = new DelegateCommand(OnStartExport, CanStartExport));
+        public ICommand CloseProgram => _closeProgramCommand ?? (_closeProgramCommand = new DelegateCommand(OnCloseProgram, CanCloseProgram));
+        public ICommand SelectOutputFilePath => _selectOutputFilePathCommand ?? (_selectOutputFilePathCommand = new DelegateCommand(OnSelectOutputFile, CanSelectOutputFile));
+        public ICommand AddNewSourceFile => _addNewSourceFileCommand ?? (_addNewSourceFileCommand = new DelegateCommand(OnAddNewSourceFile, CanAddNewSourceFile));
+        public ICommand RemoveSourceFile => _removeSourceFileCommand ?? (_removeSourceFileCommand = new DelegateCommand<FileViewModel>(OnRemoveSourceFile, CanRemoveSourceFile));
+        public ICommand OpenOutputFile => _openOutputFileCommand ?? (_openOutputFileCommand = new DelegateCommand(OnOpenOutputFile, CanOpenOutputFile));
 
         public bool IsWorking
         {
@@ -43,22 +41,13 @@ namespace ViewModels
             {
                 _isWorking = value;
                 FirePropertyChanged();
-                _startExportCommand?.ReevaluatePermissions();
-                _closeProgramCommand?.ReevaluatePermissions();
-                _selectOutputFilePathCommand?.ReevaluatePermissions();
-                _addNewSourceFileCommand?.ReevaluatePermissions();
-                _removeSourceFileCommand?.ReevaluatePermissions();
-                _openOutputFileCommand?.ReevaluatePermissions();
+                _startExportCommand?.RaiseCanExecuteChanged();
+                _closeProgramCommand?.RaiseCanExecuteChanged();
+                _selectOutputFilePathCommand?.RaiseCanExecuteChanged();
+                _addNewSourceFileCommand?.RaiseCanExecuteChanged();
+                _removeSourceFileCommand?.RaiseCanExecuteChanged();
+                _openOutputFileCommand?.RaiseCanExecuteChanged();
             }
-        }
-
-        #endregion
-
-        #region Constructors
-
-        public MainViewModel(IViewModelFactory viewModelFactory)
-        {
-            _viewModelFactory = viewModelFactory;
         }
 
         #endregion
@@ -96,7 +85,8 @@ namespace ViewModels
 
         private void OnAddNewSourceFile()
         {
-            SelectedInputFiles.Add(_viewModelFactory.GetViewModel<FileViewModel>());
+            //TODO create fileViewModel
+            SelectedInputFiles.Add(null);
         }
 
         private bool CanAddNewSourceFile()
@@ -104,14 +94,14 @@ namespace ViewModels
             return !IsWorking;
         }
 
-        private void OnRemoveSourceFile(object param)
+        private void OnRemoveSourceFile(FileViewModel param)
         {
-            SelectedInputFiles.Remove((FileViewModel) param);
+            SelectedInputFiles.Remove(param);
         }
 
-        private bool CanRemoveSourceFile(object param)
+        private bool CanRemoveSourceFile(FileViewModel param)
         {
-            return param is FileViewModel && !IsWorking;
+            return param != null && !IsWorking;
         }
 
         private void OnOpenOutputFile()

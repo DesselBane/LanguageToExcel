@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts.Presentation;
+using Prism.Mvvm;
 
 namespace ViewModels
 {
-    public abstract class ViewModelBase : IViewModelBase
+    public abstract class ViewModelBase : BindableBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void FirePropertyChanged([CallerMemberName] string propertyName = null)
+        protected void FirePropertyChanged([CallerMemberName] string propName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(propName);
         }
     }
 }

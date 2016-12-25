@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 using Contracts.DomainModels;
-using Contracts.Factories;
 using Contracts.Presentation;
-using ViewModels.Commands;
+using Prism.Commands;
 
 namespace ViewModels
 {
@@ -12,10 +11,10 @@ namespace ViewModels
         #region Vars
 
         private IPropertiesFile _propertiesFile;
-        private RelayCommand _selectFilePath;
+        private DelegateCommand _selectFilePath;
         private bool _canInteract;
         private IFileService _fileService;
-        private RelayCommand _validateCommand;
+        private DelegateCommand _validateCommand;
 
         #endregion
 
@@ -25,9 +24,9 @@ namespace ViewModels
 
         public string FilePath => _propertiesFile.FilePath?.FullName;
 
-        public ICommand SelectFilePath => _selectFilePath ?? (_selectFilePath = new RelayCommand(OnSelectFilePath, CanSelectFilePath));
+        public ICommand SelectFilePath => _selectFilePath ?? (_selectFilePath = new DelegateCommand(OnSelectFilePath, CanSelectFilePath));
 
-        public ICommand Validate => _validateCommand ?? (_validateCommand = new RelayCommand(OnValidate, CanValidate));
+        public ICommand Validate => _validateCommand ?? (_validateCommand = new DelegateCommand(OnValidate, CanValidate));
 
         public string Language
         {
@@ -46,8 +45,8 @@ namespace ViewModels
             {
                 _canInteract = value;
                 FirePropertyChanged();
-                _selectFilePath?.ReevaluatePermissions();
-                _validateCommand?.ReevaluatePermissions();
+                _selectFilePath?.RaiseCanExecuteChanged();
+                _validateCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -55,9 +54,9 @@ namespace ViewModels
 
         #region Constructors
 
-        public FileViewModel(IFileFactory fileFactory,IFileService fileService)
+        public FileViewModel(IFileService fileService)
         {
-            _propertiesFile = fileFactory.GetPropertiesFile();
+            //TODO create file model
             _fileService = fileService;
         }
 
