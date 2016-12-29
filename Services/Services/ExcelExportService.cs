@@ -47,11 +47,7 @@ namespace Services.Services
                 languages[0] = propertiesFile.Language;
 
                 if (propertiesFile.Data == null || propertiesFile.Data.Count == 0)
-                {
-                    var valid = propertiesFile.ReadData();
-                    if(valid.Any())
-                        throw new ValidationException();
-                }
+                    propertiesFile.ReadData();
 
                 foreach (KeyValuePair<string, string> keyValuePair in propertiesFile.Data)
                 {

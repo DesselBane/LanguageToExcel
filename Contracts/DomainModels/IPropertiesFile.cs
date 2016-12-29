@@ -11,7 +11,7 @@ namespace Contracts.DomainModels
         string Language { get; set; }
         IReadOnlyDictionary<string,string> Data { get; }
 
-        IEnumerable<ValidationResult> ReadData();
-        Task<IEnumerable<ValidationResult>> ReadDataAsync();
+        void ReadData();
+        Task ReadDataAsync();
     }
 }

@@ -54,12 +54,12 @@ namespace Services.DomainModels
 
         #endregion
 
-        public IEnumerable<ValidationResult> ReadData()
+        public void ReadData()
         {
             if (FilePath == null)
-                return new[] {new ValidationResult("No File selected")};
+                throw new ValidationException("No File selected");
             if (!FilePath.Exists)
-                return new[] {new ValidationResult("File not found")};
+                throw new ValidationException("File not found");
 
             DataWriteable = new Dictionary<string, string>();
 
@@ -67,7 +67,6 @@ namespace Services.DomainModels
             {
                 var streamReader = new StreamReader(FilePath.OpenRead());
                 int counter = 0;
-                var results = new List<ValidationResult>();
                 string line;
 
                 while ((line = streamReader.ReadLine()) != null)
@@ -77,7 +76,7 @@ namespace Services.DomainModels
                         var strings = line.Split('=');
 
                         if (_dataWriteable.ContainsKey(strings[0]))
-                            results.Add(new ValidationResult($"Line {counter}: Duplicate Key"));
+                            throw new ValidationException($"Line {counter}: Duplicate Key");
                         else
                         {
                             _dataWriteable.Add(strings[0], strings[1]);
@@ -85,24 +84,26 @@ namespace Services.DomainModels
                     }
                     else
                     {
-                        results.Add(new ValidationResult($"Line {counter}: Invalid line format"));
+                        throw new ValidationException($"Line {counter}: Invalid line format");
                     }
                     counter++;
                 }
-
-                return results;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException uae)
             {
-                return new[] {new ValidationResult("Path is a directory")};
+                throw new ValidationException("Path is a directory", uae);
             }
-            catch (IOException)
+            catch (IOException ioe)
             {
-                return new[] {new ValidationResult("The file is already Open")};
+                throw new ValidationException("The file is already Open", ioe);
+            }
+            catch (Exception ex)
+            {
+                throw new ValidationException("An unknown Error ocurred",ex);
             }
         }
 
-        public Task<IEnumerable<ValidationResult>> ReadDataAsync()
+        public Task ReadDataAsync()
         {
             return Task.Run(() => ReadData());
         }
