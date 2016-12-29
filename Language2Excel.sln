@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Services\Model.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageToExcel", "LanguageToExcel\LanguageToExcel.csproj", "{3275C557-F85C-48AC-AF85-AC5A40CB36CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3275C557-F85C-48AC-AF85-AC5A40CB36CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3275C557-F85C-48AC-AF85-AC5A40CB36CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3275C557-F85C-48AC-AF85-AC5A40CB36CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3275C557-F85C-48AC-AF85-AC5A40CB36CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
