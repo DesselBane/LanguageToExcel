@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Contracts.DomainModels;
 
-namespace Services.DomainModels
+namespace Services
 {
     public class PropertiesFile : IPropertiesFile
     {

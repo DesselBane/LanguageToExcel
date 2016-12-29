@@ -4,7 +4,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Services;
 
-namespace ViewModels
+namespace ExcelExport.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {

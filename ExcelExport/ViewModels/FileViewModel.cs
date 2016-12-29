@@ -5,7 +5,7 @@ using Contracts.Presentation;
 using Prism.Commands;
 using Services;
 
-namespace ViewModels
+namespace ExcelExport.ViewModels
 {
     public class FileViewModel : ViewModelBase
     {

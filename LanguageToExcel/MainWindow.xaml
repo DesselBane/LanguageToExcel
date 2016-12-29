@@ -5,6 +5,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:local="clr-namespace:LanguageToExcel"
+                      xmlns:Regions="http://prismlibrary.com/"
+                      xmlns:Contracts="clr-namespace:Contracts;assembly=Contracts"
                       mc:Ignorable="d"
 
                       Title="MainWindow"
@@ -14,5 +16,9 @@
                       BorderThickness="1"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}">
-    <Grid />
+    
+    <ContentPresenter Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.MainRegion}">
+        
+    </ContentPresenter>
+    
 </controls:MetroWindow>
