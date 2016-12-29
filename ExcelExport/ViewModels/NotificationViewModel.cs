@@ -11,6 +11,7 @@ namespace ExcelExport.ViewModels
     {
         private string _message;
         private readonly DateTime _time;
+        private NotificationLevel _level;
 
         public string Message
         {
@@ -24,6 +25,16 @@ namespace ExcelExport.ViewModels
 
         public DateTime Time => _time;
 
+        public NotificationLevel Level
+        {
+            get { return _level; }
+            set
+            {
+                _level = value; 
+                FirePropertyChanged();
+            }
+        }
+
         public NotificationViewModel()
         {
             _time = DateTime.Now;
@@ -32,6 +43,11 @@ namespace ExcelExport.ViewModels
         public NotificationViewModel(string message) : this()
         {
             Message = message;
+        }
+
+        public NotificationViewModel(string message, NotificationLevel level) : this(message)
+        {
+            Level = level;
         }
     }
 }

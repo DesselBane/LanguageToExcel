@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NotificationLevel.cs" />
     <Compile Include="ViewModels\NotificationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
