@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ExcelExport.ViewModels;
 
 namespace ExcelExport.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for PropertiesFilesListView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class PropertiesFilesListView : UserControl
     {
-        public MainView()
+        public PropertiesFilesListView()
         {
             InitializeComponent();
         }

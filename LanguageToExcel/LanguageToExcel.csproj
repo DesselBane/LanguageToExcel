@@ -149,6 +149,10 @@
       <Project>{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelExport\ExcelExport.csproj">
+      <Project>{23663A86-79D8-4703-8771-BA7071437361}</Project>
+      <Name>ExcelExport</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -159,4 +163,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
+  
 </Project>

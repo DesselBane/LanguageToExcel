@@ -11,11 +11,18 @@ namespace Services
 {
     public class ExcelExportService : IExcelExportService
     {
+        private IExportPropertiesFileService _propertiesFileService;
+
+        public ExcelExportService(IExportPropertiesFileService propertiesFileService)
+        {
+            _propertiesFileService = propertiesFileService;
+        }
+
         #region Implementation of IExcelExportService
 
-        public async Task ExportToExcelAsync(FileInfo outputFile, params IPropertiesFile[] properties)
+        public async Task ExportToExcelAsync(FileInfo outputFile)
         {
-            var merged = await MergePropertiesFileyAsync(properties);
+            var merged = await MergePropertiesFileyAsync(_propertiesFileService.RegisteredFiles().ToArray());
 
             if(outputFile.Exists)
                 outputFile.Delete();

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ExcelExport;
 using MaterialDesignThemes.Wpf;
+using Prism.Modularity;
 using Prism.Unity;
 
 namespace LanguageToExcel
@@ -18,9 +21,16 @@ namespace LanguageToExcel
             base.ConfigureContainer();
         }
 
-        protected override void ConfigureModuleCatalog()
+        protected override IModuleCatalog CreateModuleCatalog()
         {
-            base.ConfigureModuleCatalog();
+            var catalog = new DirectoryModuleCatalog();
+
+            if (!Directory.Exists(@".\Modules"))
+                Directory.CreateDirectory(@".\Modules");
+
+            catalog.ModulePath = @".\Modules";
+
+            return catalog;
         }
 
 
@@ -33,7 +43,7 @@ namespace LanguageToExcel
         {
             base.InitializeShell();
 
-            (Shell as MainWindow)?.ShowDialog();
+            (Shell as MainWindow)?.Show();
         }
 
         #endregion
