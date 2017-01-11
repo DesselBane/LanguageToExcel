@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExcelExport.ViewModels;
 using Microsoft.Practices.Unity;
 using Prism.Modularity;
 
@@ -28,7 +29,7 @@ namespace ExcelExport
 
         private void Register()
         {
-            
+            _container.RegisterType<MainViewModel>(new ContainerControlledLifetimeManager());
         }
     }
 }

@@ -8,7 +8,6 @@
                       xmlns:Regions="http://prismlibrary.com/"
                       xmlns:Contracts="clr-namespace:Contracts;assembly=Contracts"
                       mc:Ignorable="d"
-
                       Title="MainWindow"
                       Height="350"
                       Width="525"
@@ -17,8 +16,8 @@
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}">
     
-    <ContentPresenter Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.MainRegion}">
+    <ContentControl Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.MainRegion}">
         
-    </ContentPresenter>
+    </ContentControl>
     
 </controls:MetroWindow>
