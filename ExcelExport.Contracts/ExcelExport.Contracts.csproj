@@ -49,6 +49,11 @@
     <Compile Include="Model\IPropertiesFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
