@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
+using Contracts.Presentation;
+using ExcelExport.Contracts;
+using ExcelExport.Contracts.Services;
 using Prism.Commands;
+using Prism.Events;
 using Services;
 
 namespace ExcelExport.ViewModels
@@ -13,6 +18,9 @@ namespace ExcelExport.ViewModels
         private DelegateCommand _addFileCommand;
         private DelegateCommand<FileViewModel> _removeFileCommand;
         private ObservableCollection<FileViewModel> _selectedPropertyFiles = new ObservableCollection<FileViewModel>();
+        private IFileService _fileService;
+        private IPropertiesFileService _propertiesFileService;
+        private EventAggregator _eventAggregator;
 
         #endregion
 
@@ -25,31 +33,34 @@ namespace ExcelExport.ViewModels
 
         #endregion
 
-        public PropertiesFileListViewModel()
+        public PropertiesFileListViewModel(IFileService fileService, IPropertiesFileService propertiesFileService, EventAggregator eventAggregator)
         {
-            
+            _fileService = fileService;
+            _propertiesFileService = propertiesFileService;
+            _eventAggregator = eventAggregator;
         }
 
         #region Command Handlers
 
         private void OnAddFile()
         {
-            throw new NotImplementedException();
+            FileInfo fileinfo = _fileService.OpenFile();
+            _propertiesFileService.AddPropertiesFile(fileinfo);
         }
 
         private bool CanAddFile()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         private void OnRemoveFile(FileViewModel file)
         {
-            throw new NotImplementedException();
+            _propertiesFileService.RemovePropertiesFile(file.DataObject);
         }
 
         private bool CanRemoveFile(FileViewModel file)
         {
-            throw new NotImplementedException();
+            return file != null;
         }
 
         #endregion Command Handlers

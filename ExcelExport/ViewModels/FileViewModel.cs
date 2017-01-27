@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Contracts.Presentation;
 using ExcelExport.Contracts;
+using ExcelExport.Contracts.Model;
 using Prism.Commands;
 using Services;
 

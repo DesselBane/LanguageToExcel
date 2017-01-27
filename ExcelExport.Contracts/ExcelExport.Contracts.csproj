@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IExcelExportService.cs" />
-    <Compile Include="IExportPropertiesFileService.cs" />
-    <Compile Include="IPropertiesFile.cs" />
+    <Compile Include="Events\AddedPropertiesFileEvent.cs" />
+    <Compile Include="Events\PropertiesFileEventBase.cs" />
+    <Compile Include="Events\RemovedPropertiesFileEvent.cs" />
+    <Compile Include="Services\IExcelExportService.cs" />
+    <Compile Include="Services\IPropertiesFileService.cs" />
+    <Compile Include="Model\IPropertiesFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,15 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ExcelExport.Contracts;
+using ExcelExport.Contracts.Model;
+using ExcelExport.Contracts.Services;
 using OfficeOpenXml;
 
 namespace ExcelExport.Model
 {
     public class ExcelExportService : IExcelExportService
     {
-        private IExportPropertiesFileService _propertiesFileService;
+        private IPropertiesFileService _propertiesFileService;
 
-        public ExcelExportService(IExportPropertiesFileService propertiesFileService)
+        public ExcelExportService(IPropertiesFileService propertiesFileService)
         {
             _propertiesFileService = propertiesFileService;
         }

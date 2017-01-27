@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts;
 using ExcelExport.Contracts;
+using ExcelExport.Contracts.Services;
 using ExcelExport.Model;
 using ExcelExport.ViewModels;
 using ExcelExport.Views;
@@ -39,7 +40,7 @@ namespace ExcelExport
         private void Register()
         {
             _container.RegisterType<IExcelExportService, ExcelExportService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IExportPropertiesFileService, PropertiesFileService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPropertiesFileService, PropertiesFileService>(new ContainerControlledLifetimeManager());
         }
 
         private void AddViews()

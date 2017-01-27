@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ExcelExport.Contracts
+namespace ExcelExport.Contracts.Model
 {
     public interface IPropertiesFile
     {
