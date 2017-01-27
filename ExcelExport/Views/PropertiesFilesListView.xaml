@@ -5,31 +5,77 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ExcelExport.Views"
              xmlns:ViewModels="clr-namespace:ExcelExport.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance {x:Type ViewModels:PropertiesFileListViewModel}}">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <ListView x:Name="ListView_PropertyFiles"
-                  ItemsSource="{Binding SelectedPropertyFiles}" 
+
+        <ItemsControl x:Name="ListView_PropertyFiles"
+                  ItemsSource="{Binding SelectedPropertyFiles}"
                   Grid.Row="0"
+                  
                   Margin="5">
-            <ListView.ItemTemplate>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding FilePath}" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Txt_Language"
+                                 Text="{Binding Language}"
+                                 materialDesign:HintAssist.Hint="Language"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Margin="5"
+                                 Grid.Column="0"/>
+
+                        <TextBox x:Name="Txt_Path" 
+                                 Text="{Binding FilePath, Mode=OneWay}"
+                                 materialDesign:HintAssist.Hint="Path"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 IsEnabled="False"
+                                 Margin="5"
+                                 Grid.Column="1"/>
+
+                        <Button x:Name="Btn_Remove" 
+                                Command="{Binding RemoveFile}"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="5">
+                            <materialDesign:PackIcon Kind="Close" />
+                        </Button>
+                        
+                    </Grid>
+
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
         <Button x:Name="Btn_AddFile"
                 Content="Add File"
-                Command="{Binding AddFileCommand}" 
+                Command="{Binding AddFileCommand}"
                 Margin="5"
-                Grid.Row="1"/>
-        
+                Grid.Row="1" />
+
     </Grid>
 </UserControl>
