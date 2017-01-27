@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -57,6 +60,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -74,18 +78,14 @@
   <ItemGroup>
     <Compile Include="ExcelExportModule.cs" />
     <Compile Include="ExcelRegionNames.cs" />
+    <Compile Include="Model\ExcelExportService.cs" />
+    <Compile Include="Model\PropertiesFile.cs" />
+    <Compile Include="Model\PropertiesFileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\NotificationViewModel.cs" />
     <Compile Include="Views\ControlView.xaml.cs">
       <DependentUpon>ControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NotificationView.xaml.cs">
-      <DependentUpon>NotificationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PropertiesFilesListView.xaml.cs">
       <DependentUpon>PropertiesFilesListView.xaml</DependentUpon>
@@ -100,9 +100,9 @@
       <Project>{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Model.csproj">
-      <Project>{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\ExcelExport.Contracts\ExcelExport.Contracts.csproj">
+      <Project>{D8B90076-93A1-418C-80C1-686AB11A2A88}</Project>
+      <Name>ExcelExport.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -111,14 +111,6 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Views\ControlView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\NotificationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

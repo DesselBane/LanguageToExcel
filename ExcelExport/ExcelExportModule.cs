@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Contracts;
 using Contracts.Services;
+using ExcelExport.Contracts;
+using ExcelExport.Model;
 using ExcelExport.ViewModels;
 using ExcelExport.Views;
 using Microsoft.Practices.Unity;
@@ -43,10 +45,9 @@ namespace ExcelExport
 
         private void AddViews()
         {
-            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(MainView));
-            _regionManager.RegisterViewWithRegion(ExcelRegionNames.ControlView, typeof(ControlView));
-            _regionManager.RegisterViewWithRegion(ExcelRegionNames.PropertyFileView, typeof(PropertiesFilesListView));
-            _regionManager.RegisterViewWithRegion(ExcelRegionNames.NotificationView, typeof(NotificationView));
+            //TODO fix regions
+            //_regionManager.RegisterViewWithRegion(ExcelRegionNames.ControlView, typeof(ControlView));
+            //_regionManager.RegisterViewWithRegion(ExcelRegionNames.PropertyFileView, typeof(PropertiesFilesListView));
         }
     }
 }

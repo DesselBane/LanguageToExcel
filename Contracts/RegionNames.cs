@@ -8,6 +8,8 @@ namespace Contracts
 {
     public static class RegionNames
     {
-        public static string MainRegion => "MainRegion";
+        public static readonly string LeftMainArea = "Shell_LeftMainAreaRegion";
+        public static readonly string NotificationArea = "Shell_RightTopAreaRegion";
+        public static readonly string ControlArea = "Shell_RightBottomAreaRegion";
     }
 }

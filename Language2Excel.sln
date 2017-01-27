@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26020.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Language2Excel", "Language2Excel\Language2Excel.csproj", "{011CBD25-730C-4678-B268-0234E9F00EC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Services\Model.csproj", "{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}"
 EndProject
@@ -23,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Wpf", "Common.Wpf\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelExport", "ExcelExport\ExcelExport.csproj", "{23663A86-79D8-4703-8771-BA7071437361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelExport.Contracts", "ExcelExport.Contracts\ExcelExport.Contracts.csproj", "{D8B90076-93A1-418C-80C1-686AB11A2A88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{011CBD25-730C-4678-B268-0234E9F00EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011CBD25-730C-4678-B268-0234E9F00EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011CBD25-730C-4678-B268-0234E9F00EC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,16 +49,20 @@ Global
 		{23663A86-79D8-4703-8771-BA7071437361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23663A86-79D8-4703-8771-BA7071437361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23663A86-79D8-4703-8771-BA7071437361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B90076-93A1-418C-80C1-686AB11A2A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B90076-93A1-418C-80C1-686AB11A2A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B90076-93A1-418C-80C1-686AB11A2A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B90076-93A1-418C-80C1-686AB11A2A88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AD42E1A9-0997-40CA-AB0B-4B62C516A0A0} = {8210B523-B2BB-4EBE-8E63-F52DE2906707}
 		{75703EFB-CAA8-41DC-83ED-2EA711D22B8C} = {129F7BB0-2CED-49A4-B921-FACCB0577D2F}
 		{3275C557-F85C-48AC-AF85-AC5A40CB36CC} = {7415E291-EEC7-4BBC-A524-91E01AD6F7B5}
 		{8210B523-B2BB-4EBE-8E63-F52DE2906707} = {1643BB70-C1FF-460B-BE7E-F19D83B15ACD}
 		{9A8DF0B6-3658-4F47-8941-36A4C37A1567} = {129F7BB0-2CED-49A4-B921-FACCB0577D2F}
 		{23663A86-79D8-4703-8771-BA7071437361} = {8210B523-B2BB-4EBE-8E63-F52DE2906707}
+		{D8B90076-93A1-418C-80C1-686AB11A2A88} = {8210B523-B2BB-4EBE-8E63-F52DE2906707}
 	EndGlobalSection
 EndGlobal

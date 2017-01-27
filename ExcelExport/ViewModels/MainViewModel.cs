@@ -10,7 +10,6 @@ namespace ExcelExport.ViewModels
     {
         #region Vars
 
-        private readonly ObservableCollection<NotificationViewModel> _notifications = new ObservableCollection<NotificationViewModel>();
         private readonly ObservableCollection<FileViewModel> _selectedInputFiles = new ObservableCollection<FileViewModel>();
         private DelegateCommand _addNewSourceFileCommand;
         private DelegateCommand _closeProgramCommand;

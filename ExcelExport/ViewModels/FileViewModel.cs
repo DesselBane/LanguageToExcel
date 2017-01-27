@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using Contracts.DomainModels;
 using Contracts.Presentation;
+using ExcelExport.Contracts;
 using Prism.Commands;
 using Services;
 

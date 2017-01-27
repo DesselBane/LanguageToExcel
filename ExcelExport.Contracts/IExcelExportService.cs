@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Contracts.Services
+namespace ExcelExport.Contracts
 {
     public interface IExcelExportService
     {

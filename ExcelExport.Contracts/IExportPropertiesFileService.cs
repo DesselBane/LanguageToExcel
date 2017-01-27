@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts.DomainModels;
+﻿using System.Collections.Generic;
 
-namespace Contracts.Services
+namespace ExcelExport.Contracts
 {
     public interface IExportPropertiesFileService
     {

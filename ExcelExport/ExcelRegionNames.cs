@@ -9,7 +9,6 @@ namespace ExcelExport
     public static class ExcelRegionNames
     {
         public static readonly string PropertyFileView = "ExcelExport_PropertyFileViewRegion";
-        public static readonly string NotificationView = "ExcelExport_NotificationViewRegion";
         public static readonly string ControlView = "ExcelExport_ControlViewRegion";
     }
 }
