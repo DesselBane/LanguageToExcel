@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Common.Wpf.Services;
+using Contracts.Presentation;
 using ExcelExport;
 using MaterialDesignThemes.Wpf;
 using Prism.Modularity;
 using Prism.Unity;
+using Microsoft.Practices.Unity;
 
 namespace LanguageToExcel
 {
@@ -19,6 +23,9 @@ namespace LanguageToExcel
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
+
+            //Adding Application Services
+            Container.RegisterType<IFileService, WpfFileService>();
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

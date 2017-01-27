@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using Contracts.Presentation;
 using ExcelExport.Contracts;
 using ExcelExport.Contracts.Events;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
+using ExcelExport.Infrastructure;
+using Microsoft.Practices.Unity;
 using Prism.Commands;
 using Prism.Events;
 using Services;
@@ -23,6 +26,7 @@ namespace ExcelExport.ViewModels
         private IFileService _fileService;
         private IPropertiesFileService _propertiesFileService;
         private EventAggregator _eventAggregator;
+        private Factory _factory;
 
         #endregion
 
@@ -35,8 +39,9 @@ namespace ExcelExport.ViewModels
 
         #endregion
 
-        public PropertiesFileListViewModel(IFileService fileService, IPropertiesFileService propertiesFileService, EventAggregator eventAggregator)
+        public PropertiesFileListViewModel(IFileService fileService, IPropertiesFileService propertiesFileService, EventAggregator eventAggregator, Factory factory)
         {
+            _factory = factory;
             _fileService = fileService;
             _propertiesFileService = propertiesFileService;
             _eventAggregator = eventAggregator;
@@ -47,14 +52,17 @@ namespace ExcelExport.ViewModels
 
         #region Events
 
-        private void OnAddedPropertiesFile(AddedPropertiesFileEvent file)
+        private void OnAddedPropertiesFile(AddedPropertiesFileEvent @event)
         {
-            
+            FileViewModel item = _factory.CreateFileViewModel(new DependencyOverride<IPropertiesFile>(@event.PropertiesFile));
+            SelectedPropertyFiles.Add(item);
         }
 
-        private void OnRemovedPropertiesFile(RemovedPropertiesFileEvent file)
+        private void OnRemovedPropertiesFile(RemovedPropertiesFileEvent @event)
         {
-            
+            FileViewModel item = SelectedPropertyFiles.FirstOrDefault(x => x.DataObject == @event.PropertiesFile);
+            if (item != null)
+                SelectedPropertyFiles.Remove(item);
         }
 
         #endregion Events

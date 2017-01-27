@@ -77,7 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelExportModule.cs" />
-    <Compile Include="ExcelRegionNames.cs" />
+    <Compile Include="Infrastructure\ExcelRegionNames.cs" />
+    <Compile Include="Infrastructure\Factory.cs" />
     <Compile Include="Model\ExcelExportService.cs" />
     <Compile Include="Model\PropertiesFile.cs" />
     <Compile Include="Model\PropertiesFileService.cs" />

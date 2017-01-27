@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:ExcelExport.Views"
              xmlns:ViewModels="clr-namespace:ExcelExport.ViewModels"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance {x:Type ViewModels:PropertiesFileListViewModel}}"
-             Height="300" Width="300">
+             d:DataContext="{d:DesignInstance {x:Type ViewModels:PropertiesFileListViewModel}}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +16,8 @@
         
         <ListView x:Name="ListView_PropertyFiles"
                   ItemsSource="{Binding SelectedPropertyFiles}" 
-                  Grid.Row="0">
+                  Grid.Row="0"
+                  Margin="5">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding FilePath}" />
@@ -28,6 +28,7 @@
         <Button x:Name="Btn_AddFile"
                 Content="Add File"
                 Command="{Binding AddFileCommand}" 
+                Margin="5"
                 Grid.Row="1"/>
         
     </Grid>

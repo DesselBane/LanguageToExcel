@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Contracts;
 using ExcelExport.Contracts;
 using ExcelExport.Contracts.Services;
+using ExcelExport.Infrastructure;
 using ExcelExport.Model;
 using ExcelExport.ViewModels;
 using ExcelExport.Views;
@@ -39,15 +40,13 @@ namespace ExcelExport
 
         private void Register()
         {
-            _container.RegisterType<IExcelExportService, ExcelExportService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<Factory>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPropertiesFileService, PropertiesFileService>(new ContainerControlledLifetimeManager());
         }
 
         private void AddViews()
         {
-            //TODO fix regions
-            //_regionManager.RegisterViewWithRegion(ExcelRegionNames.ControlView, typeof(ControlView));
-            //_regionManager.RegisterViewWithRegion(ExcelRegionNames.PropertyFileView, typeof(PropertiesFilesListView));
+            _regionManager.RegisterViewWithRegion(RegionNames.LeftMainArea, () => _container.Resolve<PropertiesFilesListView>());
         }
     }
 }

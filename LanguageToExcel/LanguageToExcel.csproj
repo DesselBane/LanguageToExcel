@@ -145,6 +145,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Wpf\Common.Wpf.csproj">
+      <Project>{9A8DF0B6-3658-4F47-8941-36A4C37A1567}</Project>
+      <Name>Common.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{75703EFB-CAA8-41DC-83ED-2EA711D22B8C}</Project>
       <Name>Contracts</Name>
@@ -163,6 +167,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
-  
 </Project>
