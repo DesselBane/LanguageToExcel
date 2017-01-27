@@ -4,6 +4,8 @@ using System.IO;
 using System.Windows.Input;
 using Contracts.Presentation;
 using ExcelExport.Contracts;
+using ExcelExport.Contracts.Events;
+using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -38,14 +40,39 @@ namespace ExcelExport.ViewModels
             _fileService = fileService;
             _propertiesFileService = propertiesFileService;
             _eventAggregator = eventAggregator;
+
+            _eventAggregator.GetEvent<PubSubEvent<AddedPropertiesFileEvent>>().Subscribe(OnAddedPropertiesFile);
+            _eventAggregator.GetEvent<PubSubEvent<RemovedPropertiesFileEvent>>().Subscribe(OnRemovedPropertiesFile);
         }
+
+        #region Events
+
+        private void OnAddedPropertiesFile(AddedPropertiesFileEvent file)
+        {
+            
+        }
+
+        private void OnRemovedPropertiesFile(RemovedPropertiesFileEvent file)
+        {
+            
+        }
+
+        #endregion Events
 
         #region Command Handlers
 
         private void OnAddFile()
         {
             FileInfo fileinfo = _fileService.OpenFile();
-            _propertiesFileService.AddPropertiesFile(fileinfo);
+
+            try
+            {
+                _propertiesFileService.AddPropertiesFile(fileinfo);
+            }
+            catch
+            {
+                //ignored
+            }
         }
 
         private bool CanAddFile()
@@ -55,7 +82,14 @@ namespace ExcelExport.ViewModels
 
         private void OnRemoveFile(FileViewModel file)
         {
-            _propertiesFileService.RemovePropertiesFile(file.DataObject);
+            try
+            {
+                _propertiesFileService.RemovePropertiesFile(file.DataObject);
+            }
+            catch 
+            {
+                //ignored
+            }
         }
 
         private bool CanRemoveFile(FileViewModel file)

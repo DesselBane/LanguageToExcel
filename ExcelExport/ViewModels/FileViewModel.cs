@@ -3,7 +3,9 @@ using System.Windows.Input;
 using Contracts.Presentation;
 using ExcelExport.Contracts;
 using ExcelExport.Contracts.Model;
+using ExcelExport.Contracts.Services;
 using Prism.Commands;
+using Prism.Events;
 using Services;
 
 namespace ExcelExport.ViewModels
@@ -13,10 +15,8 @@ namespace ExcelExport.ViewModels
         #region Vars
 
         private IPropertiesFile _propertiesFile;
-        private DelegateCommand _selectFilePath;
-        private bool _canInteract;
-        private IFileService _fileService;
-        private DelegateCommand _validateCommand;
+        private IPropertiesFileService _propertiesFileService;
+        private DelegateCommand _removeFileCommand;
 
         #endregion
 
@@ -25,10 +25,6 @@ namespace ExcelExport.ViewModels
         public IPropertiesFile DataObject => _propertiesFile;
 
         public string FilePath => _propertiesFile.FilePath?.FullName;
-
-        public ICommand SelectFilePath => _selectFilePath ?? (_selectFilePath = new DelegateCommand(OnSelectFilePath, CanSelectFilePath));
-
-        public ICommand Validate => _validateCommand ?? (_validateCommand = new DelegateCommand(OnValidate, CanValidate));
 
         public string Language
         {
@@ -40,52 +36,40 @@ namespace ExcelExport.ViewModels
             }
         }
 
-        public bool CanInteract
-        {
-            get { return _canInteract; }
-            internal set
-            {
-                _canInteract = value;
-                FirePropertyChanged();
-                _selectFilePath?.RaiseCanExecuteChanged();
-                _validateCommand?.RaiseCanExecuteChanged();
-            }
-        }
+        public ICommand RemoveFile => _removeFileCommand ?? (_removeFileCommand = new DelegateCommand(OnRemoveFile, CanRemoveFile));
 
         #endregion
 
         #region Constructors
 
-        public FileViewModel(IFileService fileService)
+        public FileViewModel(IPropertiesFile propFile, IPropertiesFileService propertiesFileService)
         {
-            //TODO create file model
-            _fileService = fileService;
+            _propertiesFile = propFile;
+            _propertiesFileService = propertiesFileService;
+
         }
 
         #endregion
 
-        #region Command Handler
+        #region Command Handlers
 
-        private void OnSelectFilePath()
+        private void OnRemoveFile()
         {
-            _propertiesFile.FilePath = _fileService.OpenFile();
+            try
+            {
+                _propertiesFileService.RemovePropertiesFile(DataObject);
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
-        private bool CanSelectFilePath()
+        private bool CanRemoveFile()
         {
-            return CanInteract;
+            return DataObject != null;
         }
 
-        private void OnValidate()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool CanValidate()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion Command Handler
+        #endregion Command Handlers
     }
 }

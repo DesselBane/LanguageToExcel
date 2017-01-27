@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExcelExport.ViewModels;
 
 namespace ExcelExport.Views
 {
@@ -20,8 +21,9 @@ namespace ExcelExport.Views
     /// </summary>
     public partial class PropertiesFilesListView : UserControl
     {
-        public PropertiesFilesListView()
+        public PropertiesFilesListView(PropertiesFileListViewModel viewModel)
         {
+            DataContext = viewModel;
             InitializeComponent();
         }
     }
