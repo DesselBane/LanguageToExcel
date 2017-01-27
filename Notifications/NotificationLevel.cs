@@ -1,4 +1,4 @@
-﻿namespace Contracts.Services
+﻿namespace Notifications
 {
     public enum NotificationLevel
     {

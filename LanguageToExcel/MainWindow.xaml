@@ -15,9 +15,35 @@
                       BorderThickness="1"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}">
-    
-    <!--<ContentControl Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.MainRegion}">-->
-        <!--TODO fix regions-->
-    <!--</ContentControl>-->
-    
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ContentControl x:Name="ContentControl_LeftMainArea"
+                        Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.LeftMainArea}"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.RowSpan="2" />
+
+        <ContentControl x:Name="ContentControl_NotificationArea" 
+                        Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.NotificationArea}"
+                        Grid.Column="1"
+                        Grid.Row="0"/>
+        
+        <ContentControl x:Name="ContentControl_ControlArea" 
+                        Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.ControlArea}"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+        
+    </Grid>
+
+
 </controls:MetroWindow>
