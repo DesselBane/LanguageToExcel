@@ -19,10 +19,12 @@ namespace ExcelExport.ViewModels
         private IFileService _fileService;
         private DelegateCommand _runCommand;
         private IExcelExportService _excelExportService;
+        private DelegateCommand _openCommand;
 
         public string OutputPath => _outputPath?.FullName;
         public ICommand SelectOutputPath => _selectOutputPathCommand ?? (_selectOutputPathCommand = new DelegateCommand(OnSelectOutputPath,CanSelectOutputPath));
         public ICommand Run => _runCommand ?? (_runCommand = new DelegateCommand(OnRun, CanRun));
+        public ICommand Open => _openCommand ?? (_openCommand = new DelegateCommand(OnOpen, CanOpen));
 
         public ControlsViewModel(IFileService fileService, IExcelExportService excelExportService)
         {
@@ -48,6 +50,16 @@ namespace ExcelExport.ViewModels
         }
 
         private bool CanRun()
+        {
+            return true;
+        }
+
+        private void OnOpen()
+        {
+            System.Diagnostics.Process.Start(OutputPath);
+        }
+
+        private bool CanOpen()
         {
             return true;
         }
