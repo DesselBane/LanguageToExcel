@@ -45,6 +45,7 @@
     <Compile Include="Events\AddedPropertiesFileEvent.cs" />
     <Compile Include="Events\PropertiesFileEventBase.cs" />
     <Compile Include="Events\RemovedPropertiesFileEvent.cs" />
+    <Compile Include="Model\IValidationRule.cs" />
     <Compile Include="Services\IExcelExportService.cs" />
     <Compile Include="Services\IPropertiesFileService.cs" />
     <Compile Include="Model\IPropertiesFile.cs" />

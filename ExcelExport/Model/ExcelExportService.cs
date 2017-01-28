@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ExcelExport.Contracts;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using OfficeOpenXml;
@@ -12,54 +12,71 @@ namespace ExcelExport.Model
 {
     public class ExcelExportService : IExcelExportService
     {
-        private IPropertiesFileService _propertiesFileService;
+        #region Vars
 
-        public ExcelExportService(IPropertiesFileService propertiesFileService)
+        private IPropertiesFileService _propertiesFileService;
+        private IPropertyFileValidationService _propertyFileValidationService;
+
+        #endregion
+
+        #region Constructors
+
+        public ExcelExportService(IPropertiesFileService propertiesFileService,IPropertyFileValidationService propertyFileValidationService)
         {
             _propertiesFileService = propertiesFileService;
+            _propertyFileValidationService = propertyFileValidationService;
         }
+
+        #endregion
 
         #region Implementation of IExcelExportService
 
         public async Task ExportToExcelAsync(FileInfo outputFile)
         {
-            var merged = await MergePropertiesFileyAsync(_propertiesFileService.RegisteredFiles().ToArray());
+            var files = _propertiesFileService.RegisteredFiles().ToArray();
 
-            if(outputFile.Exists)
+            bool allOk = true;
+            foreach (IPropertiesFile propertiesFile in files)
+            {
+                if ((await _propertyFileValidationService.ValidateFile(propertiesFile)).Any())
+                    allOk = false;
+            }
+
+            if(!allOk)
+                throw new ValidationException("One or more files are invalid");
+
+            var merged = await MergePropertiesFileyAsync(files).ConfigureAwait(false);
+
+            if (outputFile.Exists)
                 outputFile.Delete();
 
             var excel = new ExcelPackage(outputFile);
 
-            await WriteToExcelAsync(merged,excel);
+            await WriteToExcelAsync(merged, excel).ConfigureAwait(false);
 
             excel.Save();
-            
         }
 
         #endregion
 
-        private Task<List<Tuple<string, string[]>>> MergePropertiesFileyAsync(params IPropertiesFile[] properties)
-        {
-            return Task.Run(() => MergePropertiesFiles(properties));
-        }
+        #region Worker Methods
 
-        private List<Tuple<string,string[]>> MergePropertiesFiles(params IPropertiesFile[] properties)
+        private async Task<List<Tuple<string, string[]>>> MergePropertiesFileyAsync(params IPropertiesFile[] properties)
         {
             var languages = new string[properties.Length];
             int position = 0;
-            Dictionary<string,string[]> result = new Dictionary<string, string[]>();
+            Dictionary<string, string[]> result = new Dictionary<string, string[]>();
 
             foreach (IPropertiesFile propertiesFile in properties)
             {
                 languages[0] = propertiesFile.Language;
 
-                if (propertiesFile.Data == null || propertiesFile.Data.Count == 0)
-                    propertiesFile.ReadData();
+                var data = await _propertiesFileService.ParseFileAsync(propertiesFile).ConfigureAwait(false);
 
-                foreach (KeyValuePair<string, string> keyValuePair in propertiesFile.Data)
+                foreach (KeyValuePair<string, string> keyValuePair in data)
                 {
                     if (!result.ContainsKey(keyValuePair.Key))
-                        result.Add(keyValuePair.Key,new string[properties.Length]);
+                        result.Add(keyValuePair.Key, new string[properties.Length]);
 
                     result[keyValuePair.Key][position] = keyValuePair.Value;
                 }
@@ -67,18 +84,17 @@ namespace ExcelExport.Model
             }
 
             var returnValue = result.Select(x => new Tuple<string, string[]>(x.Key, x.Value)).OrderBy(x => x.Item1).ToList();
-            returnValue.Insert(0,new Tuple<string, string[]>("Keys",languages));
+            returnValue.Insert(0, new Tuple<string, string[]>("Keys", languages));
             return returnValue;
         }
 
-        private Task WriteToExcelAsync(List<Tuple<string, string[]>> mergedProperties,ExcelPackage excelPackage)
+        private Task WriteToExcelAsync(IEnumerable<Tuple<string, string[]>> mergedProperties, ExcelPackage excelPackage)
         {
-            return Task.Run(() => WriteToExcel(mergedProperties,excelPackage));
+            return Task.Run(() => WriteToExcel(mergedProperties, excelPackage));
         }
 
-        private void WriteToExcel(List<Tuple<string,string[]>> mergedProperties,ExcelPackage excelPackage)
+        private void WriteToExcel(IEnumerable<Tuple<string, string[]>> mergedProperties, ExcelPackage excelPackage)
         {
-
             ExcelWorksheet sheet = excelPackage.Workbook.Worksheets.Add("Languages");
 
             int lineCount = 1;
@@ -96,5 +112,7 @@ namespace ExcelExport.Model
                 lineCount++;
             }
         }
+
+        #endregion Worker Methods
     }
 }

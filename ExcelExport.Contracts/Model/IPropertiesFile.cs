@@ -9,9 +9,6 @@ namespace ExcelExport.Contracts.Model
     {
         FileInfo FilePath { get; set; }
         string Language { get; set; }
-        IReadOnlyDictionary<string,string> Data { get; }
 
-        void ReadData();
-        Task ReadDataAsync();
     }
 }

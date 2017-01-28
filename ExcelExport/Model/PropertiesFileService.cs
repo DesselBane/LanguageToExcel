@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace ExcelExport.Model
             if (_propertiesFiles.Any(x => x.FilePath.FullName == fileInfo.FullName))
                 throw new ArgumentException("This file path is already added");
 
-            if(fileInfo == null || !fileInfo.Exists)
+            if (fileInfo == null || !fileInfo.Exists)
                 throw new FileNotFoundException();
 
             var propFile = new PropertiesFile {FilePath = fileInfo};
@@ -59,13 +60,24 @@ namespace ExcelExport.Model
             return _propertiesFiles.ToArray();
         }
 
-        #region Implementation of IPropertiesFileService
-
-        public Task<IEnumerable<IReadOnlyDictionary<string, string>>> ParseFilesAsync()
+        public Task<IReadOnlyDictionary<string, string>> ParseFileAsync(IPropertiesFile file)
         {
-            throw new NotImplementedException();
-        }
+            return Task.Run(() =>
+            {
+                var dataWriteable = new Dictionary<string, string>();
 
-        #endregion
+                var streamReader = new StreamReader(file.FilePath.OpenRead());
+                string line;
+
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    var strings = line.Split('=');
+
+                    dataWriteable.Add(strings[0], strings[1]);
+                }
+
+                return new ReadOnlyDictionary<string, string>(dataWriteable) as IReadOnlyDictionary<string, string>;
+            });
+        }
     }
 }

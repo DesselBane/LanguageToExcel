@@ -30,9 +30,9 @@ namespace ExcelExport.Contracts.Services
         IEnumerable<IPropertiesFile> RegisteredFiles();
 
         /// <summary>
-        /// Parses all Files and returns an Enumerable of Dictionary Key Value pairs
+        /// Parses a File and returns a Dictionary of Key Value pairs
         /// </summary>
         /// <returns>Returns a Dictionary of Key Value pairs</returns>
-        Task<IEnumerable<IReadOnlyDictionary<string, string>>> ParseFilesAsync();
+        Task<IReadOnlyDictionary<string, string>> ParseFileAsync(IPropertiesFile propertiesFile);
     }
 }
