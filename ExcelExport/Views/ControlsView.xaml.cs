@@ -12,16 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExcelExport.ViewModels;
 
 namespace ExcelExport.Views
 {
     /// <summary>
     /// Interaction logic for ControlView.xaml
     /// </summary>
-    public partial class ControlView : UserControl
+    public partial class ControlsView : UserControl
     {
-        public ControlView()
+        public ControlsView(ControlsViewModel viewModel)
         {
+            DataContext = viewModel;
+
             InitializeComponent();
         }
     }
