@@ -69,7 +69,7 @@ namespace ExcelExport.Model
 
             foreach (IPropertiesFile propertiesFile in properties)
             {
-                languages[0] = propertiesFile.Language;
+                languages[position] = propertiesFile.Language;
 
                 var data = await _propertiesFileService.ParseFileAsync(propertiesFile).ConfigureAwait(false);
 
