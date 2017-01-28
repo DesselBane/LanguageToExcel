@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using ExcelExport.Contracts.Model;
 
 namespace ExcelExport.Contracts.Services
@@ -27,5 +28,11 @@ namespace ExcelExport.Contracts.Services
         /// </summary>
         /// <returns>Returns all tracked Files</returns>
         IEnumerable<IPropertiesFile> RegisteredFiles();
+
+        /// <summary>
+        /// Parses all Files and returns an Enumerable of Dictionary Key Value pairs
+        /// </summary>
+        /// <returns>Returns a Dictionary of Key Value pairs</returns>
+        Task<IEnumerable<IReadOnlyDictionary<string, string>>> ParseFilesAsync();
     }
 }

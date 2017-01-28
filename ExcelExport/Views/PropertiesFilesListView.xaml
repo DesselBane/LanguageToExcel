@@ -35,6 +35,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="300" />
@@ -45,8 +46,9 @@
                         <TextBox x:Name="Txt_Language"
                                  Text="{Binding Language}"
                                  materialDesign:HintAssist.Hint="Language"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Style="{StaticResource MaterialDesignTextBox}"
                                  Margin="5"
+                                 Grid.Row="0"
                                  Grid.Column="0"/>
 
                         <TextBox x:Name="Txt_Path" 
@@ -55,6 +57,7 @@
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  IsEnabled="False"
                                  Margin="5"
+                                 Grid.Row="0"
                                  Grid.Column="1"/>
 
                         <Button x:Name="Btn_Remove" 
@@ -64,6 +67,8 @@
                                 Margin="5">
                             <materialDesign:PackIcon Kind="Close" />
                         </Button>
+                        
+                        
                         
                     </Grid>
 

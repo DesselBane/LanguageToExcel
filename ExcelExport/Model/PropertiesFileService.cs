@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using ExcelExport.Contracts.Events;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
@@ -32,6 +33,8 @@ namespace ExcelExport.Model
             if (_propertiesFiles.Any(x => x.FilePath.FullName == fileInfo.FullName))
                 throw new ArgumentException("This file path is already added");
 
+            if(fileInfo == null || !fileInfo.Exists)
+                throw new FileNotFoundException();
 
             var propFile = new PropertiesFile {FilePath = fileInfo};
             _propertiesFiles.Add(propFile);
@@ -55,5 +58,14 @@ namespace ExcelExport.Model
         {
             return _propertiesFiles.ToArray();
         }
+
+        #region Implementation of IPropertiesFileService
+
+        public Task<IEnumerable<IReadOnlyDictionary<string, string>>> ParseFilesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
