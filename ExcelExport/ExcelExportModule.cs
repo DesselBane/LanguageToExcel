@@ -42,11 +42,14 @@ namespace ExcelExport
         {
             _container.RegisterType<Factory>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPropertiesFileService, PropertiesFileService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPropertyFileValidationService, PropertyFileValidationService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IExcelExportService, ExcelExportService>(new ContainerControlledLifetimeManager());
         }
 
         private void AddViews()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.LeftMainArea, () => _container.Resolve<PropertiesFilesListView>());
+            _regionManager.RegisterViewWithRegion(RegionNames.ControlArea, () => _container.Resolve<ControlsView>());
         }
     }
 }
