@@ -8,9 +8,10 @@
                       xmlns:Regions="http://prismlibrary.com/"
                       xmlns:Contracts="clr-namespace:Contracts;assembly=Contracts"
                       mc:Ignorable="d"
-                      Title="MainWindow"
+                      Title="Language 2 Excel"
                       Height="900"
-                      Width="1600"
+                      Width="900"
+                      WindowStartupLocation="CenterScreen"
                       GlowBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="1"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -30,17 +31,16 @@
         <ContentControl x:Name="ContentControl_LeftMainArea"
                         Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.LeftMainArea}"
                         Grid.Column="0"
-                        Grid.Row="0"
-                        Grid.RowSpan="2" />
+                        Grid.Row="0" />
 
-        <ContentControl x:Name="ContentControl_NotificationArea" 
+        <!--<ContentControl x:Name="ContentControl_NotificationArea" 
                         Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.NotificationArea}"
                         Grid.Column="1"
-                        Grid.Row="0"/>
+                        Grid.Row="0"/>-->
         
         <ContentControl x:Name="ContentControl_ControlArea" 
                         Regions:RegionManager.RegionName="{x:Static Contracts:RegionNames.ControlArea}"
-                        Grid.Column="1"
+                        Grid.Column="0"
                         Grid.Row="1"/>
         
     </Grid>

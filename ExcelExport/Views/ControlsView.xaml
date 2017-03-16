@@ -19,11 +19,11 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -34,25 +34,30 @@
                  materialDesign:HintAssist.Hint="Output Path"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="5"
+                 Grid.Column="0"
                  Grid.Row="0" />
 
         <Button x:Name="Btn_Browse"
                 Content="Browse"
                 Command="{Binding SelectOutputPath}"
                 Margin="5"
-                Grid.Row="1" />
+                Grid.Column="1"
+                Grid.Row="0" />
 
         <Button x:Name="Btn_Open"
                 Command="{Binding Open}"
                 Content="Open Excel"
                 Margin="5"
-                Grid.Row="2" />
+                Grid.Column="2"
+                Grid.Row="0" />
 
         <Button x:Name="Btn_Run"
                 Content="Run"
                 Command="{Binding Run}"
                 Margin="5"
-                Grid.Row="3" />
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"/>
 
     </Grid>
 </UserControl>
