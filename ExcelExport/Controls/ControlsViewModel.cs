@@ -8,7 +8,7 @@ using ExcelExport.Contracts.Services;
 using Prism.Commands;
 using Services;
 
-namespace ExcelExport.ViewModels
+namespace ExcelExport.Controls
 {
     public class ControlsViewModel : ViewModelBase
     {

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Contracts.Presentation;
-using ExcelExport.Contracts;
 using ExcelExport.Contracts.Events;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
@@ -14,7 +12,7 @@ using Prism.Commands;
 using Prism.Events;
 using Services;
 
-namespace ExcelExport.ViewModels
+namespace ExcelExport.Files
 {
     public class PropertiesFileListViewModel : ViewModelBase
     {

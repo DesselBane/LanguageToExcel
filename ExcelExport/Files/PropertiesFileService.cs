@@ -9,7 +9,7 @@ using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using Prism.Events;
 
-namespace ExcelExport.Model
+namespace ExcelExport.Files
 {
     public class PropertiesFileService : IPropertiesFileService
     {

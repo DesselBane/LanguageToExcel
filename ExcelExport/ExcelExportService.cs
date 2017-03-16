@@ -8,7 +8,7 @@ using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using OfficeOpenXml;
 
-namespace ExcelExport.Model
+namespace ExcelExport
 {
     public class ExcelExportService : IExcelExportService
     {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Windows.Input;
-using Contracts.Presentation;
-using ExcelExport.Contracts;
+﻿using System.Windows.Input;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using Prism.Commands;
-using Prism.Events;
 using Services;
 
-namespace ExcelExport.ViewModels
+namespace ExcelExport.Files
 {
     public class FileViewModel : ViewModelBase
     {

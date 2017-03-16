@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ExcelExport.Contracts.Model;
 using ExcelExport.Contracts.Services;
 using Microsoft.Practices.Unity;
 
-namespace ExcelExport.Model
+namespace ExcelExport.Validation
 {
     public class PropertyFileValidationService : IPropertyFileValidationService
     {
