@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IApplicationService.cs" />
+    <Compile Include="Presentation\FileServiceOptions.cs" />
     <Compile Include="Presentation\IFileService.cs" />
     <Compile Include="Presentation\IFileServiceOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -71,7 +71,12 @@ namespace ExcelExport.ViewModels
 
         private void OnAddFile()
         {
-            FileInfo fileinfo = _fileService.OpenFile();
+            FileInfo fileinfo = _fileService.OpenFile(new FileServiceOptions
+            {
+                Filter = "Properties File|*.properties|All Files|*.*",
+                DefaultExtensions = ".properties",
+                DereferenceLinks = true
+            });
 
             try
             {
