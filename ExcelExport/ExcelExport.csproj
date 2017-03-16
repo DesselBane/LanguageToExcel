@@ -82,18 +82,18 @@
     <Compile Include="ExcelExportModule.cs" />
     <Compile Include="Infrastructure\ExcelRegionNames.cs" />
     <Compile Include="Infrastructure\Factory.cs" />
-    <Compile Include="Model\ExcelExportService.cs" />
-    <Compile Include="Model\PropertiesFile.cs" />
-    <Compile Include="Model\PropertiesFileService.cs" />
-    <Compile Include="Model\PropertyFileValidationService.cs" />
+    <Compile Include="ExcelExportService.cs" />
+    <Compile Include="Files\PropertiesFile.cs" />
+    <Compile Include="Files\PropertiesFileService.cs" />
+    <Compile Include="Validation\PropertyFileValidationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ControlsViewModel.cs" />
-    <Compile Include="ViewModels\FileViewModel.cs" />
-    <Compile Include="ViewModels\PropertiesFileListViewModel.cs" />
-    <Compile Include="Views\ControlsView.xaml.cs">
+    <Compile Include="Controls\ControlsViewModel.cs" />
+    <Compile Include="Files\FileViewModel.cs" />
+    <Compile Include="Files\PropertiesFileListViewModel.cs" />
+    <Compile Include="Controls\ControlsView.xaml.cs">
       <DependentUpon>ControlsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PropertiesFilesListView.xaml.cs">
+    <Compile Include="Files\PropertiesFilesListView.xaml.cs">
       <DependentUpon>PropertiesFilesListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -116,11 +116,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\ControlsView.xaml">
+    <Page Include="Controls\ControlsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PropertiesFilesListView.xaml">
+    <Page Include="Files\PropertiesFilesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

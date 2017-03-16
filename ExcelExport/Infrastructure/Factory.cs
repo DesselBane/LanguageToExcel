@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExcelExport.Contracts.Model;
-using ExcelExport.ViewModels;
+using ExcelExport.Files;
 using Microsoft.Practices.Unity;
 
 namespace ExcelExport.Infrastructure
