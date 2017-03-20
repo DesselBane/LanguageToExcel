@@ -5,7 +5,7 @@
            Name="Language 2 Excel"
            Language="1033"
            Codepage="1252"
-           Version="0.1.0.0"
+           Version="0.1.0.1"
            Manufacturer="Dark Productions"
            UpgradeCode="D405D598-1883-42B0-9327-D7D020B7FD0E">
 
@@ -38,11 +38,15 @@
                         Directory="ProgramMenuDir"
                         Name="Language 2 Excel"
                         WorkingDirectory="INSTALLDIR"
+                        Icon="ShellIcon.exe"
+                        IconIndex="0"
                         Advertise="yes" />
               <Shortcut Id="desktopL2E"
                         Directory="DesktopFolder"
                         Name="Language 2 Excel"
                         WorkingDirectory="INSTALLDIR"
+                        Icon="ShellIcon.exe"
+                        IconIndex="0"
                         Advertise="yes" />
             </File>
             <File Id="ShellCONFIG"
@@ -134,6 +138,8 @@
       <ComponentRef Id='PrismWpf' />
       <ComponentRef Id='SystemWindowsInteractivity' />
     </Feature>
+
+    <Icon Id='ShellIcon.exe' SourceFile='C:\Alderaan\SourceControl\LanguageToExcel\LanguageToExcel\L2E_Logo.ico'/>
 
   </Product>
 </Wix>
