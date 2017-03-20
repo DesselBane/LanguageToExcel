@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="C0C1DDE0-83ED-4737-AE72-6015E5205835"
+           Name="Language 2 Excel"
+           Language="1033"
+           Codepage="1252"
+           Version="0.1.0.0"
+           Manufacturer="Dark Productions"
+           UpgradeCode="D405D598-1883-42B0-9327-D7D020B7FD0E">
+
+    <Package Id="*"
+             Keywords="Installer"
+             Description="Language 2 Excel installer"
+             InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <Media Id="1"
+           Cabinet="Payload.cab"
+           EmbedCab="yes"
+           DiskPrompt="CD-ROM #1" />
+    <Property Id='DiskPrompt' Value="Language 2 Excel Installation [1]" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="Language2Excel">
+          <Component Id="Shell" Guid="DF0C5078-D03C-4E2A-BD75-6A2864F3E71B">
+            <File Id="ShellEXE"
+                  Name="$(var.LanguageToExcel.TargetFileName)"
+                  DiskId="1"
+                  Source="$(var.LanguageToExcel.TargetPath)"
+                  KeyPath="yes">
+
+              <Shortcut Id="startmenuL2E"
+                        Directory="ProgramMenuDir"
+                        Name="Language 2 Excel"
+                        WorkingDirectory="INSTALLDIR"
+                        Advertise="yes" />
+              <Shortcut Id="desktopL2E"
+                        Directory="DesktopFolder"
+                        Name="Language 2 Excel"
+                        WorkingDirectory="INSTALLDIR"
+                        Advertise="yes" />
+            </File>
+            <File Id="ShellCONFIG"
+                  Name="$(var.LanguageToExcel.TargetFileName).config"
+                  Source="$(var.LanguageToExcel.TargetPath).config" />
+          </Component>
+          <Component Id="CommonWpf" Guid="85E11C3E-4236-4A7E-9E25-E0FE7FF10C75">
+            <File Id="CommonWpfDLL" Name="$(var.Common.Wpf.TargetFileName)" Source="$(var.Common.Wpf.TargetPath)" KeyPath="yes" />
+          </Component>
+          <Component Id="Contracts" Guid="F014577C-6BE8-468D-BA49-378FBCC2862D">
+            <File Id="ContractsDLL" Name="$(var.Contracts.TargetFileName)" Source="$(var.Contracts.TargetPath)" KeyPath="yes" />
+          </Component>
+          <Component Id="MahAppsMetro" Guid="3A1CA24A-4881-4214-BFEE-E2BFE78FE38D">
+            <File Id="MahAppsMetroDLL" Name="MahApps.Metro.dll" Source="$(var.LanguageToExcel.TargetDir)MahApps.Metro.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MaterialDesignColors" Guid="66ED5E29-B1DD-4CE2-A2F8-9931A9512EA7">
+            <File Id="MaterialDesignColorsDLL" Name="MaterialDesignColors.dll" Source="$(var.LanguageToExcel.TargetDir)MaterialDesignColors.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MaterialDesignThemesMahApps" Guid="89E73927-E4A6-4FA4-A284-99BDD2F05ADD">
+            <File Id="MaterialDesignThemesMahAppsDLL" Name="MaterialDesignThemes.MahApps.dll" Source="$(var.LanguageToExcel.TargetDir)MaterialDesignThemes.MahApps.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MaterialDesignThemesWpf" Guid="37B45FF7-8AFE-489B-968A-83BB77E6F370">
+            <File Id="MaterialDesignThemesWpfDLL" Name="MaterialDesignThemes.Wpf.dll" Source="$(var.LanguageToExcel.TargetDir)MaterialDesignThemes.Wpf.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MicrosoftPracticesServiceLocation" Guid="364ABBEE-C56F-41EF-9457-D7ECEAE35A59">
+            <File Id="MicrosoftPracticesServiceLocationDLL" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.LanguageToExcel.TargetDir)Microsoft.Practices.ServiceLocation.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MicrosoftPracticesUnityConfiguration" Guid="C6C6BBFB-C8FB-4130-B266-8FFDAB7D702F">
+            <File Id="MicrosoftPracticesUnityConfigurationDLL" Name="Microsoft.Practices.Unity.Configuration.dll" Source="$(var.LanguageToExcel.TargetDir)Microsoft.Practices.Unity.Configuration.dll" />
+          </Component>
+          <Component Id="MicrosoftPracticesUnity" Guid="0A348E55-9768-4B60-B870-38AA1398E368">
+            <File Id="MicrosoftPracticesUnityDLL" Name="Microsoft.Practices.Unity.dll" Source="$(var.LanguageToExcel.TargetDir)Microsoft.Practices.Unity.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="MicrosoftPracticesUnityRegistrationByConvention" Guid="BA0B2516-6240-4DAC-A520-7FEEE2DE78D8">
+            <File Id="MicrosoftPracticesUnityRegistrationByConventionDLL" Name="Microsoft.Practices.Unity.RegistrationByConvention.dll" Source="$(var.LanguageToExcel.TargetDir)Microsoft.Practices.Unity.RegistrationByConvention.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="Prism" Guid="1FB372F9-862A-44D7-ADDA-EB3F4F6702C6">
+            <File Id="PrismDLL" Name="Prism.dll" Source="$(var.LanguageToExcel.TargetDir)Prism.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="PrismUnityWpf" Guid="C678B549-FC37-43D7-9DD0-2695E93FDF73">
+            <File Id="PrismUnityWpfDLL" Name="Prism.Unity.Wpf.dll" Source="$(var.LanguageToExcel.TargetDir)Prism.Unity.Wpf.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="PrismWpf" Guid="828C437D-ADC4-4AA3-8B81-37460C08399B">
+            <File Id="PrismWpfDLL" Name="Prism.Wpf.dll" Source="$(var.LanguageToExcel.TargetDir)Prism.Wpf.dll" KeyPath="yes" />
+          </Component>
+          <Component Id="SystemWindowsInteractivity" Guid="75443E91-BE78-4FAC-B254-1AF05EC609AA">
+            <File Id="SystemWindowsInteractivityDLL" Name="System.Windows.Interactivity.dll" Source="$(var.LanguageToExcel.TargetDir)System.Windows.Interactivity.dll" KeyPath="yes" />
+          </Component>
+          <Directory Id="Modules" Name="Modules">
+            <Component Id="ExcelExport" Guid="02102699-0B19-43FC-8742-1DB52E0AC133">
+              <File Id="ExcelExportDLL" Name="ExcelExport.dll" Source="$(var.SolutionDir)ExcelExport\bin\Release\ExcelExport.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="ExcelExportContracts" Guid="0A46EEED-C100-482D-AC5D-96C3AF5482B0">
+              <File Id="ExcelExportContractDLL" Name="$(var.ExcelExport.Contracts.TargetFileName)" Source="$(var.ExcelExport.Contracts.TargetPath)" KeyPath="yes" />
+            </Component>
+          </Directory>
+
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="Language 2 Excel">
+          <Component Id="ProgramMenuDir" Guid="9AC43996-E763-43E1-8F83-3EAF0F1F57B9">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id='DesktopFolder' Name='Desktop' />
+    </Directory>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='Shell' />
+      <ComponentRef Id='CommonWpf' />
+      <ComponentRef Id='Contracts' />
+      <ComponentRef Id='ExcelExport' />
+      <ComponentRef Id='ExcelExportContracts' />
+      <ComponentRef Id='ProgramMenuDir' />
+      <ComponentRef Id='MahAppsMetro' />
+      <ComponentRef Id='MaterialDesignColors' />
+      <ComponentRef Id='MaterialDesignThemesMahApps' />
+      <ComponentRef Id='MaterialDesignThemesWpf' />
+      <ComponentRef Id='MicrosoftPracticesServiceLocation' />
+      <ComponentRef Id='MicrosoftPracticesUnityConfiguration' />
+      <ComponentRef Id='MicrosoftPracticesUnity' />
+      <ComponentRef Id='MicrosoftPracticesUnityRegistrationByConvention' />
+      <ComponentRef Id='Prism' />
+      <ComponentRef Id='PrismUnityWpf' />
+      <ComponentRef Id='PrismWpf' />
+      <ComponentRef Id='SystemWindowsInteractivity' />
+    </Feature>
+
+  </Product>
+</Wix>

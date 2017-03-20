@@ -129,7 +129,7 @@
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(SolutionDir)LanguageToExcel\$(OutDir)Modules\NUL" mkdir "$(SolutionDir)LanguageToExcel\$(OutDir)Modules"
 copy /y "$(TargetPath)" "$(SolutionDir)LanguageToExcel\$(OutDir)Modules\$(TargetFileName)"
-</PostBuildEvent>
+copy /y "$(ProjectDir)$(OutDir)ExcelExport.Contracts.dll" "$(SolutionDir)LanguageToExcel\$(OutDir)Modules\ExcelExport.Contracts.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

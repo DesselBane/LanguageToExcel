@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Common.Wpf.Services;
 using Contracts.Presentation;
-using ExcelExport;
 using MaterialDesignThemes.Wpf;
 using Prism.Modularity;
 using Prism.Unity;
