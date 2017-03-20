@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="C0C1DDE0-83ED-4737-AE72-6015E5205835"
+  <Product Id="*"
            Name="Language 2 Excel"
            Language="1033"
            Codepage="1252"
-           Version="0.1.0.1"
+           Version="0.1.1.0"
            Manufacturer="Dark Productions"
            UpgradeCode="D405D598-1883-42B0-9327-D7D020B7FD0E">
 
@@ -16,12 +16,13 @@
              Compressed="yes"
              InstallScope="perMachine" />
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-
+    <MajorUpgrade AllowDowngrades="no"  AllowSameVersionUpgrades="no"  DowngradeErrorMessage="No Downgrade possible." />
+   
     <Media Id="1"
            Cabinet="Payload.cab"
            EmbedCab="yes"
            DiskPrompt="CD-ROM #1" />
+
     <Property Id='DiskPrompt' Value="Language 2 Excel Installation [1]" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -139,7 +140,7 @@
       <ComponentRef Id='SystemWindowsInteractivity' />
     </Feature>
 
-    <Icon Id='ShellIcon.exe' SourceFile='C:\Alderaan\SourceControl\LanguageToExcel\LanguageToExcel\L2E_Logo.ico'/>
+    <Icon Id='ShellIcon.exe' SourceFile='C:\Alderaan\SourceControl\LanguageToExcel\LanguageToExcel\L2E_Logo.ico' />
 
   </Product>
 </Wix>
